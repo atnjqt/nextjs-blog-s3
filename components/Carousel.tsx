@@ -6,7 +6,6 @@ import { blogPosts } from '@/data/blogPosts';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Carousel() {
@@ -32,17 +31,9 @@ export default function Carousel() {
         className="mb-8"
       >
         {blogPosts.slice(0, 6).map((post) => (
-          <SwiperSlide key={post.id}>
-            <Link href={`/blog/${post.id}`} className="block group">
+          <SwiperSlide key={post.slug}>
+            <Link href={`/blog/${post.year}/${post.month}/${post.slug}`} className="block group">
               <div className="relative overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-[1.02]">
-                <div className="aspect-video bg-gray-200 relative">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">

@@ -1,106 +1,47 @@
-"use client";
-
 import { blogPosts } from '@/data/blogPosts';
-import BlogPostCard from '@/components/BlogPostCard';
-import { useState } from 'react';
+import Link from 'next/link';
 
 export default function BlogPage() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
-  const categories = ['All', ...Array.from(new Set(blogPosts.map(post => post.category)))];
-
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          post.content.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
-
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <header className="mb-10 text-center">
-        <h1 className="text-4xl font-bold mb-3 text-gray-900 dark:text-white">Our Blog</h1>
-        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Insights on open source, digital public infrastructure, and technology for global good.
-        </p>
-      </header>
-
-      {/* Search and Filter */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 mb-8">
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search articles..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
-                suppressHydrationWarning
-              />
-              <svg
-                className="absolute left-3 top-2.5 w-5 h-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
-          </div>
-          <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
-            {categories.map(category => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
-                  selectedCategory === category
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Post Count */}
-      <p className="text-gray-600 dark:text-gray-400 mb-6">
-        Showing {filteredPosts.length} of {blogPosts.length} posts
-      </p>
-
-      {/* Blog Grid */}
-      {filteredPosts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPosts.map(post => (
-            <BlogPostCard key={post.id} post={post} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-xl">
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
-            No posts found matching your criteria.
+    <div className="flex flex-col flex-1 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 font-sans">
+      <main className="relative z-10 w-full max-w-3xl mx-auto flex flex-col gap-8 py-16 px-8 sm:px-16">
+        <header className="flex flex-col gap-2">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white">Blog</h1>
+          <p className="text-zinc-400">
+            Insights on open source, digital public infrastructure, and technology for global good.
           </p>
-          <button
-            onClick={() => {
-              setSearchTerm('');
-              setSelectedCategory('All');
-            }}
-            className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
-          >
-            Clear filters
-          </button>
-        </div>
-      )}
+        </header>
+
+        {/* Post list */}
+        <section className="flex flex-col gap-4">
+          {blogPosts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.year}/${post.month}/${post.slug}`}
+              className="group flex flex-col gap-2 bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-colors"
+            >
+              <div className="flex items-center gap-3 text-xs text-zinc-400">
+                <span className="bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full">
+                  {post.category}
+                </span>
+                <time dateTime={post.date}>
+                  {new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </div>
+              <h2 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">
+                {post.title}
+              </h2>
+              <p className="text-sm text-zinc-400 leading-relaxed">
+                {post.excerpt}
+              </p>
+            </Link>
+          ))}
+        </section>
+      </main>
     </div>
   );
 }
