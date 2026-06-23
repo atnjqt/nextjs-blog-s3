@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Ensure ONNX runtime (used by Transformers.js) isn't bundled server-side
+  serverExternalPackages: ['onnxruntime-node'],
 };
 
 export default nextConfig;

@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run embeddings && next build",
+    "embeddings": "npx tsx scripts/generate-embeddings.mts",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
     "next": "16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
@@ -22,6 +24,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "tailwindcss": "^4",
+    "tsx": "^4.22.4",
     "typescript": "^5"
   }
 }
