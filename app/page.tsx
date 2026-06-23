@@ -10,7 +10,7 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10" />
       </div>
 
-      <main className="relative z-10 flex flex-1 w-full max-w-3xl flex-col gap-12 py-24 px-8 sm:px-16">
+      <main className="relative z-10 flex flex-1 w-full max-w-3xl flex-col gap-12 py-16 px-8 sm:px-16">
         {/* Profile + Headline */}
         <section className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
           <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden ring-4 ring-white/20 shadow-2xl flex-shrink-0">
@@ -27,7 +27,7 @@ export default function Home() {
               Etienne Philippe Jacquot
             </h1>
             <p className="text-lg text-zinc-300 leading-relaxed">
-              Systems Administrator &amp; DevOps Engineer at the{" "}
+              Systems Administrator, DevOps Engineer, & AI Solutions Architect at the{" "}
               <a href="https://www.asc.upenn.edu" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">Annenberg School for Communication</a>
               , at the <a href="https://www.upenn.edu/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">University of Pennsylvania</a>{" "}
             </p>
@@ -42,23 +42,16 @@ export default function Home() {
             </h2>
             <ul className="list-disc list-inside text-zinc-200 flex flex-col gap-1">
               <li>
-                Bachelor of Arts (BA) in{" "}
-                <a href="https://web.sas.upenn.edu/philosophyclassof2020/etienne-jacquot/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">Philosophy</a>
+                Bachelor in {" "}
+                <a href="https://web.sas.upenn.edu/philosophyclassof2020/etienne-jacquot/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">Philosophy</a>{" "}
+                (BA) from UPenn College of Arts & Sciences
               </li>
               <li>
-                Masters (ML) in {" "}
-                <a href="https://www.law.upenn.edu/live/news/18529-penn-carey-law-commencement-2026" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">Law</a>
+                Master in {" "}
+                <a href="https://www.law.upenn.edu/live/news/18529-penn-carey-law-commencement-2026" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">Law</a>{" "}
+                (ML) from Penn Carey Law
               </li> 
             </ul>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-blue-300">
-              Hobbies
-            </h2>
-            <p className="text-zinc-200">
-              Running, snowboarding, vinyl DJ, and all things open source technology
-            </p>
           </div>
         </section>
 

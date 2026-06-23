@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Etienne P Jacquot",
   description: "Personal NextJS & React web blog",
+  icons: {
+    icon: "globe.svg",
+  },
 };
 
 export default function RootLayout({
